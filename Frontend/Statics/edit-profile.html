@@ -48,62 +48,58 @@
 
     <main class="container-fluid">
         <div class="text-center justify-content-center mb-5">
-            <img class="form-banner" src="img/account.png" alt="your profile" title="welcome back to your account." />
-            <h3 class="lead">Welcome to your account.</h3>
+            <img class="form-banner" src="img/profile.png" alt="your profile" title="Edit your profile" />
+            <h3 class="lead">Edit your profile</h3>
         </div>
         <section class="container">
-            <div class="row">
 
-                <div class="col-lg-6 col-md-6 col-sm-12 p-3 h-25">
-                    <a class="custom-card d-block text-decoration-none text-black" href="#" title="edit your profile.">
-                        <div class="text-center">
-                            <div class="option-banner" style="background-image: url('img/profile.png');"></div>
-                            <p class=" lead">Edit your profile</p>
-                            <p class="mt-5">you can edit your general information such as profile picture or bio and
-                                etc... here.</p>
+            <div class="p-3">
+                <div class="custom-card p-4">
+                    <form action="#" method="post">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
+                                <label class="form-label">First name</label>
+                                <input class="form-control" placeholder="John" type="text" />
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
+                                <label class="form-label">Middle name</label>
+                                <input class="form-control" placeholder="Jr" type="text" />
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
+                                <label class="form-label">Last name</label>
+                                <input class="form-control" placeholder="Templeton" type="text" />
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
+                                <label class="form-label d-block mb-3">Gender</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios1" value="option1">
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios2" value="option2">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
+                                <label class="form-label">Bio</label>
+                                <textarea class="form-control" cols="12" rows="6"
+                                    placeholder="tell us about your self"></textarea>
+                            </div>
                         </div>
-                    </a>
-                </div>
-
-
-                <div class="col-lg-6 col-md-6 col-sm-12 p-3 h-25">
-                    <a class="custom-card d-block text-decoration-none text-black" href="#"
-                        title="change your security settings">
-                        <div class="text-center">
-                            <div class="option-banner" style="background-image: url('img/TFA.png');"></div>
-                            <p class="lead">Security settings</p>
-                            <p class="mt-5">Change your security settings for examle two factor authentication and
-                                etc...</p>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary ps-5 pe-5 m-1">Save</button>
+                            <button type="submit" class="btn btn-outline-secondary m-1">Back</button>
                         </div>
-                    </a>
+                    </form>
                 </div>
-
-
-                <div class="col-lg-6 col-md-6 col-sm-12 p-3 h-25">
-                    <a class="custom-card d-block text-decoration-none text-black" href="#"
-                        title="the applications you've loggined.">
-                        <div class="text-center">
-                            <div class="option-banner" style="background-image: url('img/applications.png');"></div>
-                            <p class="lead">Applications</p>
-                            <p class="mt-5">The applications you've shared your data with them.</p>
-                        </div>
-                    </a>
-                </div>
-
-
-                <div class="col-lg-6 col-md-6 col-sm-12 p-3 h-25">
-                    <a class="custom-card d-block text-decoration-none text-black" href="#"
-                        title="messages comming from applications">
-                        <div class="text-center">
-                            <div class="option-banner" style="background-image: url('img/new-message.png');"></div>
-                            <p class="lead">Inbox</p>
-                            <p class="mt-5">The messages you've recaived from applications.</p>
-                        </div>
-                    </a>
-                </div>
-
-
             </div>
+
         </section>
     </main>
 
