@@ -43,12 +43,19 @@ body
     border-radius: 16px;
     padding: 8px;
     box-shadow: 0px 0px 8px #4e4e4e88;
+    overflow: hidden;
+    transition: .3s all ease;
+}
+
+.custom-card:hover
+{
+    box-shadow: 0px 0px 16px #4e4e4e88;
 }
 
 .form-banner
 {
-    height: 30%;
-    width: 50%;
+    max-height: 30%;
+    max-width: 50%;
 }
 
 .back-to-home
@@ -61,4 +68,20 @@ body
 .display-none
 {
     display: none;
+}
+
+.option-banner
+{
+    width: 50%;
+    height: 200px;
+    object-fit: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0px auto;
+}
+
+.footer-nav ul li
+{
+    list-style-type: none;
 }
