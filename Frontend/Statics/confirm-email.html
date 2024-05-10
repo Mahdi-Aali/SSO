@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Phone number confirmation form</title>
+</head>
+<body class="bg-w-smock vh-center h-100-vh">
+
+    <header>
+        <a href="#" class="back-to-home p-2">Back to home</a>
+    </header>
+    <main class="container">
+        <section class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <h2 class="text-center">Mahdi Aali SSO</h2>
+                <div class="custom-card">
+                    <div class="text-center">
+                        <img src="img/two-step-verification.png" alt="secure login image" title="confirm your Email." class="form-banner" />
+                        <p class="lead">Confirm your Email.</p>
+                    </div>
+                    <section class="m-3">
+                        <form action="#" method="post">
+                            <div class="mb-3 p-2">
+                                <label class="form-label">Confirmation code </label>
+                                <input class="form-control" type="text" placeholder="( 687445 ) for example" />
+                                <p class="pt-2" id="countDownTimerContainer"><span id="countDownTimerSeconds">90</span> seconds left.</p>
+                            </div>
+                            <p class="ps-2 display-none" id="resend-button-container">You don't recaived the code? <a class="btn btn-link" href="#">Send it again!</a></p>
+                            <div class="mb-3 p-2">
+                                <button type="submit" class="btn btn-primary ps-5 pe-5">Submit</button>
+                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/count-down-timer.js"></script>
+    <script src="js/bootstrap.bundle.min.js"> </script>
+</body>
+</html>
