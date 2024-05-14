@@ -1,0 +1,3 @@
+These cmd files made to make development process fater and easier.
+
+((( Please do not touch folders structure. )))
