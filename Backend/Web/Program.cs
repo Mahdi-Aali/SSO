@@ -1,6 +1,14 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using Web.StartupConfiguration;
 
-app.MapGet("/", () => "Hello World!");
+public class Program : Startup<SSOStartup>
+{
+    static async Task Main(string[] args)
+    {
+        await RunAsync(args);
+    }
+}
 
-app.Run();
+public class SSOStartup : WebApplicationStartup
+{
+
+}

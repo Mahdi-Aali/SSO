@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>@ViewBag.Title - SSO</title>
+    @if (IsSectionDefined("Css"))
+    {
+        await RenderSectionAsync("Css", false);
+    }
+</head>
+<body class="bg-w-smock vh-center h-100-vh">
+
+    <header>
+        <a href="/" class="back-to-home p-2">Back to home</a>
+    </header>
+    <main class="container">
+        @RenderBody()
+    </main>
+
+    <script src="js/bootstrap.bundle.min.js"> </script>
+    @if (IsSectionDefined("Script"))
+    {
+        await RenderSectionAsync("Script", false);
+    }
+</body>
+</html>
