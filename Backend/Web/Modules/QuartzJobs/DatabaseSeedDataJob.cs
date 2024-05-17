@@ -89,7 +89,7 @@ public sealed class DatabaseSeedDataJob : IJob
         }
         else
         {
-            LogInformation("System default roles are exist before.");
+            LogInformation("System default roles are already exists.");
         }
 
     }
