@@ -1,24 +1,19 @@
-﻿using Core.DependencyInjection;
-using Domain.AggregationRoot.UserAggregate;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace Infrastructure;
 
-public sealed class InfrastructureDependencyProvider : IDependencyInjectionProvider
+public static class InfrastructureDependencyProvider
 {
-    public static IServiceCollection GetAssemblyDependencies(IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection LoadInfrastrutureDependencies(this IServiceCollection services, in IConfiguration configuration)
     {
         AddDbContext(services, configuration);
-        AddIdentityCore(services);
-
         return services;
     }
 
 
-    public static void AddDbContext(IServiceCollection services, IConfiguration configuration)
+    private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<SSODatabaseContext>(opt =>
         {
@@ -27,21 +22,8 @@ public sealed class InfrastructureDependencyProvider : IDependencyInjectionProvi
                 sqlServerOptions
                 .CommandTimeout(TimeSpan.FromSeconds(3).Seconds)
                 .EnableRetryOnFailure(5, TimeSpan.FromSeconds(5), null)
-                .MigrationsAssembly(typeof(InfrastructureDependencyProvider).Assembly.GetName().Name);
+                .MigrationsAssembly("Web");
             });
         });
-    }
-
-
-
-    public static void AddIdentityCore(IServiceCollection services)
-    {
-        services.AddIdentityCore<SSOUser>(cfg =>
-        {
-            cfg.User.RequireUniqueEmail = true;
-            cfg.SignIn.RequireConfirmedEmail = true;
-            cfg.Stores.ProtectPersonalData = true;
-        })
-            .AddEntityFrameworkStores<SSODatabaseContext>();
     }
 }

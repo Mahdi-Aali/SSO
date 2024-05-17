@@ -11,4 +11,15 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="microsoft.entityframeworkcore.design" Version="8.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="quartz" Version="3.9.0" />
+    <PackageReference Include="Quartz.AspNetCore" Version="3.9.0" />
+    <PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.9.0" />
+    <PackageReference Include="Quartz.Extensions.Hosting" Version="3.9.0" />
+  </ItemGroup>
+
 </Project>
