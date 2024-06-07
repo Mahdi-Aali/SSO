@@ -1,0 +1,40 @@
+﻿@page
+@model Web.Pages.Login.TFAModel
+@{
+    ViewBag.Title = "Two factor authentication code.";
+    Layout = "_AuthenticationLayout";
+}
+
+<dismissible-info-alert>
+    <p>We've send a two factor authentication code to your email.</p>
+    <p>please check your email and enter the code in box below.</p>
+</dismissible-info-alert>
+
+<dismissible-warning-alert>
+    <p>Don't refresh or close this page. otherwise your process will be lost.</p>
+</dismissible-warning-alert>
+
+<form asp-page="/Login/TFA" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="TFADto.UserId" />
+
+    <div class="mb-3 p-2">
+        <label class="form-label">Confirmation code </label>
+        <input class="form-control" asp-for="TFADto.TFAToken" placeholder="( 012345 ) for example" />
+        <p class="pt-2" id="countDownTimerContainer"><span id="countDownTimerSeconds">90</span> seconds left.</p>
+    </div>
+
+    <p class="ps-2 display-none" id="resend-button-container">You don't recaived the code? <a class="btn btn-link" href="#">Send it again!</a></p>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3 p-2">
+        <button type="submit" class="btn btn-primary ps-5 pe-5">Submit</button>
+        <button type="reset" class="btn btn-outline-secondary">Reset</button>
+    </div>
+</form>
+
+@section Script
+{
+    @await Html.PartialAsync("_ValidationPartial")
+}

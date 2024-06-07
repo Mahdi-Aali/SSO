@@ -23,7 +23,9 @@ public static class InfrastructureDependencyProvider
                 .CommandTimeout(TimeSpan.FromSeconds(3).Seconds)
                 .EnableRetryOnFailure(5, TimeSpan.FromSeconds(5), null)
                 .MigrationsAssembly("Web");
-            });
+            })
+            .EnableDetailedErrors()
+            .EnableSensitiveDataLogging();
         });
     }
 }
