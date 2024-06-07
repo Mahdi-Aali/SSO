@@ -9,7 +9,7 @@ public partial class SSODatabaseContext : IdentityDbContext<SSOUser, SSORole, Gu
 {
     public SSODatabaseContext(DbContextOptions<SSODatabaseContext> opt) : base(opt)
     {
-
+        
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

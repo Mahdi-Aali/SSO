@@ -25,7 +25,7 @@ public abstract class WebApplicationStartup : ApplicationStartup
 
         builder.Services
             .LoadInfrastrutureDependencies(Configuration)
-            .LoadServiceConfigurations(Configuration);
+            .LoadServiceConfigurations(Configuration, _assemblies);
     }
 
     public override async Task Configure(WebApplication app, IWebHostEnvironment env)
@@ -50,12 +50,14 @@ public abstract class WebApplicationStartup : ApplicationStartup
 
     private void LoadAssemblies()
     {
+        string[] validAssemblies = ["Domain", "Web", "Infrastructure", "Core", "Application"];
         _assemblies =
             Assembly
             .GetExecutingAssembly()
             .GetReferencedAssemblies()
-            .Where(asm => asm.Name!.Contains("sso", StringComparison.OrdinalIgnoreCase))
-            .Select(asm => Assembly.Load(asm))
+            .Select(s => Assembly.Load(s))
+            .Where(asm => validAssemblies.Contains(asm.GetName().Name))
+            .Concat([GetType().Assembly])
             .ToArray();
     }
 

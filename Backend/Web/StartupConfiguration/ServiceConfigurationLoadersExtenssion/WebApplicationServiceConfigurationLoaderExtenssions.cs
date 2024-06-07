@@ -3,17 +3,21 @@ using Domain.AggregationRoot.UserAggregate;
 using Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Quartz;
+using System.Reflection;
+using StackExchange.Redis;
 
 namespace Web.StartupConfiguration.ServiceConfigurationLoadersExtenssion;
 
 public static class WebApplicationServiceConfigurationLoaderExtenssions
 {
-    public static IServiceCollection LoadServiceConfigurations(this IServiceCollection services, in IConfiguration configuration)
+    public static IServiceCollection LoadServiceConfigurations(this IServiceCollection services, in IConfiguration configuration, in Assembly[] assemblies)
     {
         AddRazorPages(services);
         AddIdentity(services);
         ConfigureApplicationCookies(services);
         AddQuartzScheduler(services);
+        AddMediator(services, assemblies);
+        AddRedisCache(services, configuration);
 
         return services;
     }
@@ -29,6 +33,7 @@ public static class WebApplicationServiceConfigurationLoaderExtenssions
         {
             cfg.SignIn.RequireConfirmedEmail = true;
             cfg.User.RequireUniqueEmail = true;
+            cfg.Lockout.AllowedForNewUsers = true;
             cfg.Lockout.MaxFailedAccessAttempts = 5;
             cfg.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
         })
@@ -54,6 +59,23 @@ public static class WebApplicationServiceConfigurationLoaderExtenssions
         services.AddQuartzHostedService(cfg =>
         {
             cfg.WaitForJobsToComplete = true;
+        });
+    }
+
+    private static void AddMediator(IServiceCollection services, Assembly[] assemblies)
+    {
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssemblies(assemblies);
+        });
+    }
+
+    private static void AddRedisCache(IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddStackExchangeRedisCache(cfg =>
+        {
+            cfg.Configuration = configuration.GetConnectionString("redis-cache");
+            cfg.InstanceName = "sso-redis-cache";
         });
     }
 }

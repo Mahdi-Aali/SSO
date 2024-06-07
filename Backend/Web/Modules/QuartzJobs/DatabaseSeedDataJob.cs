@@ -104,8 +104,7 @@ public sealed class DatabaseSeedDataJob : IJob
             EmailConfirmed = true,
             PhoneNumber = "+989058785110",
             PhoneNumberConfirmed = true,
-            TwoFactorEnabled = true,
-            LockoutEnabled = true
+            TwoFactorEnabled = true
         };
 
         IdentityResult createAccountResult = await userManager.CreateAsync(admin, "Admin@123");
@@ -122,10 +121,12 @@ public sealed class DatabaseSeedDataJob : IJob
         }
     }
 
-    private async Task AddSystemAdminRoleToAdminAccount(UserManager<SSOUser> userManager, SSOUser admin, CancellationToken cancellationToken = default)
+    private async Task AddSystemAdminRoleToAdminAccount(IServiceProvider services, CancellationToken cancellationToken = default)
     {
+        UserManager<SSOUser> userManager = services.GetRequiredService<UserManager<SSOUser>>();
+        SSOUser adminAccount = await userManager.FindByNameAsync("Admin")!;
         LogInformation("Adding SSOAdmin role to admin account.");
-        IdentityResult roleAdditionResult = await userManager.AddToRoleAsync(admin, "SSOAdmin");
+        IdentityResult roleAdditionResult = await userManager.AddToRoleAsync(adminAccount!, "SSOAdmin");
         if (roleAdditionResult.Succeeded)
         {
             LogInformation("SSOAdmin role successfully added to admin account.");
@@ -148,7 +149,7 @@ public sealed class DatabaseSeedDataJob : IJob
         {
             if (!await userManager.IsInRoleAsync(admin, "SSOAdmin"))
             {
-                await AddSystemAdminRoleToAdminAccount(userManager, admin, cancellationToken);
+                await AddSystemAdminRoleToAdminAccount(services, cancellationToken);
             }
         }
     }
